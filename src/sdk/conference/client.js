@@ -186,8 +186,11 @@ export const ConferenceClient = function(config, signalingImpl) {
         return;
       }
       const participant = participants.get(participantId);
+      const event = new ParticipantEvent(
+          'left', {participant: participant});
+      self.dispatchEvent(event);
       participants.delete(participantId);
-      participant.dispatchEvent(new EventModule.OwtEvent('left'));
+      //participant.dispatchEvent(new EventModule.OwtEvent('left'));
     }
   }
 
